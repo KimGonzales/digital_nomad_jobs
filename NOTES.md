@@ -28,15 +28,17 @@ attributes
 methods
 #call
 #main_menu
-#list_web_developer_jobs
+#make_web_developer_jobs
     calls Scraper.scrape_jobs(URL) where url is web-dev page
-    calls create_from_collection
-#list_web_design_jobs
+    creates new jobs with create_from_collection
+#make_web_design_jobs
     calls Scraper.scrape_jobs(URL) where url is web-design page
-    calls create_from_collection
-#list_all_jobs 
+    creates new jobs with create_from_collection
+#make_all_jobs 
     calls Scraper.scrape_jobs(URL) where url is index page
-    calls create_from_collection
+    creates new jobs with create_from_collection
+#display_jobs
+
 
 ***********  JOB  **************
 attributes
