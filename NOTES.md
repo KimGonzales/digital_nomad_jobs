@@ -17,7 +17,7 @@ Flow
 [ ]Get user input
 [ ]Scrape job postings from website and instantiate a new job object for every posting AND 
 [ ]Instatiate a new company for each job posting as well UNLESS it has already been created.
-[ ]Establish relationship between each Job and Company. A Job BELONGS TO a company. A Company     has many jobs.     
+[ ]Establish relationship between each Job and Company. A Job BELONGS TO a company. A Company has many jobs.     
 
 Class Outlines:
 
@@ -28,21 +28,24 @@ attributes
 methods
 #call
 #main_menu
-#make_web_developer_jobs
-    calls Scraper.scrape_jobs(URL) where url is web-dev page
-    creates new jobs with create_from_collection
-#make_web_design_jobs
-    calls Scraper.scrape_jobs(URL) where url is web-design page
-    creates new jobs with create_from_collection
-#make_all_jobs 
-    calls Scraper.scrape_jobs(URL) where url is index page
-    creates new jobs with create_from_collection
+#make_jobs
+    #make_web_developer_jobs
+        calls Scraper.scrape_jobs(URL) where url is web-dev page
+        creates new jobs with create_from_collection
+    #make_web_design_jobs
+        calls Scraper.scrape_jobs(URL) where url is web-design page
+        creates new jobs with create_from_collection
+    #make_all_jobs 
+        calls Scraper.scrape_jobs(URL) where url is index page
+        creates new jobs with create_from_collection
 #display_jobs
+
+#display_job_description
 
 
 ***********  JOB  **************
 attributes
-    :title, :company, :description, :url
+    :title, :company, :description, :url, :skills, :time_posted
 
 methods
 #self.create_from_collection(array)
@@ -51,10 +54,39 @@ methods
 #self.add_description(hash)
     adds the description of a job
 
+#company_name
+    self.company.name (returns the name of a given job's company)
+
+#company_name=(company)
+    if self.company.nil?
+        self.company = Company.new(company)
+
 
 **********  COMPANY  **********
 attributes
     :name, :jobs, url 
+    @@all
+
+methods
+#initialize(name)
+    @jobs = []
+    
+#add_job(job)
+    @jobs << job
+    job.company = self
+
+#add_job_by_title(title)
+    job = Job.new(title)
+    @jobs << job
+    job.company = self
+
+#self.find_or_create_by_name(name)
+    self.all.detect{|name| name = self.name} || self.new(name)
+
+#print_jobs
+    jobs.each{|job| puts job.title}
+#jobs
+    returns an array of all the companies jobs
 
 
 **********  SCRAPER ************
@@ -68,3 +100,7 @@ methods:
 #.scrape_job_descriptions
     this class method takes an argument of a singular job posting's url
     and scrapes the :description and :company_url and returns a hash.
+
+
+@@@@@@@ RELATIONSHIPS
+@@@@@@@ Walkthrough code!
