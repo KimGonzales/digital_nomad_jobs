@@ -1,4 +1,10 @@
 require_relative "./digital_nomad_jobs/version"
 require_relative "./digital_nomad_jobs/cli"
+require_relative "./digital_nomad_jobs/company"
+require_relative "./digital_nomad_jobs/job"
+require_relative "./digital_nomad_jobs/scraper"
+
+
+
 
 #this file sets up the gem's environment

@@ -11,26 +11,22 @@ class DigitalNomadJobs::CLI
         puts "Enter 1 for Web Developer Jobs"
         puts "Enter 2 for Web Design Jobs"
         puts "Enter 3 to List All Jobs"
-        puts "Type 'exit' to exit"
-
-        input = gets.strip
-
+        puts "Type '0' to exit"
+    
+        input = gets.strip.to_i
+        
         case input
-            when input == 1
-                scrape and list web developer jobs from the website
-            when input == 2
-                scrape and list web design from the website 
-            when input == 3
-                scrape and list all the websites postings 
-            when input == exit
+            when input = 1
+                puts "scrape and list web developer jobs from the website"
+            when input = 2
+                puts "scrape and list web design from the website" 
+            when input = 3
+                puts "scrape and list all the websites postings" 
+            when input = 0
+                puts "Bye!"
                 exit 
-            else 
-                puts 'not valid input'
-                main menu 
-            end
- 
+        end
     end 
-
 
     
 end

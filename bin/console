@@ -1,17 +1,17 @@
-# #!/usr/bin/env ruby
+#!/usr/bin/env ruby
 
-# require "bundler/setup"
-# require "digital_nomad_jobs"
+require "bundler/setup"
+require "digital_nomad_jobs"
 
 
-# # You can add fixtures and/or initialization code here to make experimenting
-# # with your gem easier. You can also use a different console, if you like.
+# You can add fixtures and/or initialization code here to make experimenting
+# with your gem easier. You can also use a different console, if you like.
 
-# # (If you use this, don't forget to add pry to your Gemfile!)
-# # require "pry"
-# # Pry.start
+# (If you use this, don't forget to add pry to your Gemfile!)
+# require "pry"
+# Pry.start
 
-# require "irb"
-# IRB.start(__FILE__)
+require "irb"
+IRB.start(__FILE__)
 
-#you can probably delete this file 
+you can probably delete this file 
