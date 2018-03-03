@@ -31,9 +31,11 @@ class DigitalNomadJobs::Job
         puts "Position: #{self.title}"
         puts "Company : #{self.company}"
         puts "Posted  : #{self.time_posted} ago"
-        puts "Related : #{self.skills}"
+        puts "Tags : #{self.skills}"
         puts ""
         puts "Description : #{self.description}"
+        puts ""
+        puts "Learn More or Apply at: #{PATH + job.job_url}
         puts "=================================================================================================================="
     end 
 end
