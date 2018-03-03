@@ -50,25 +50,25 @@ class DigitalNomadJobs::CLI
 
     def make_dev_jobs
         DigitalNomadJobs::Job.reset
-        puts "SCRAPE THAT WEB DEVELOPER."
         job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-dev-jobs')
         DigitalNomadJobs::Job.create_from_collection(job_array)
         puts ""
-        puts "CHECK OUT NEW WEB-DEV JOB POSTINGS BELOW"
+        puts "   NABBING THE MOST RECENT WEB-DEV JOBS         "
         puts "------------------------------------------------"
         puts ""
+        add_descriptions_to_jobs
         display_jobs
     end
 
     def make_design_jobs
         DigitalNomadJobs::Job.reset
-        puts "SCRAPE THE DESIGN!"
         job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-design-jobs')
         DigitalNomadJobs::Job.create_from_collection(job_array)
         puts ""
-        puts "CHECK OUT NEW UX AND DESIGN JOB POSTINGS BELOW" 
+        puts "A LIST OF NEW UX AND DESIGN JOBS ARE ON ZE WAY" 
         puts "------------------------------------------------"
         puts ""
+        add_descriptions_to_jobs
         display_jobs 
     end
 
