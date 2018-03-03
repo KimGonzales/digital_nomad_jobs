@@ -8,9 +8,9 @@ class DigitalNomadJobs::CLI
     end 
     
     def welcome
-        puts "###################################"
-        puts ")))Welcome to Digital Nomad Jobs((("
-        puts "###################################"
+        puts "==================================="
+        puts ") )Welcome to Digital Nomad Jobs( ("
+        puts "==================================="
     end 
 
 
@@ -21,7 +21,7 @@ class DigitalNomadJobs::CLI
         puts "Enter '2' for UX/UI and Design Jobs"
         puts "Enter '3' to List All Jobs"
         puts "Enter '0' to exit"
-        puts "========= + + + + + + +============"
+        puts "========= + + + + + + + ==========="
         select_option
     end 
 
@@ -46,23 +46,37 @@ class DigitalNomadJobs::CLI
 
     def make_dev_jobs
         puts "SCRAPE THAT WEB DEVELOPER."
+        job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-dev-jobs')
+        DigitalNomadJobs::Job.create_from_collection(job_array)
+        puts ''
+        puts 'CHECK OUT NEW WEB-DEV JOB POSTINGS BELOW' 
+        puts '------------------------------------------------'
+        puts ''
+        display_jobs
     end
 
     def make_design_jobs
-        puts "SCRAPE THE DESIGN!" 
+        puts "SCRAPE THE DESIGN!"
+        job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-design-jobs')
+        DigitalNomadJobs::Job.create_from_collection(job_array)
+        puts ''
+        puts 'CHECK OUT NEW UX AND DESIGN JOB POSTINGS BELOW' 
+        puts '------------------------------------------------'
+        puts ''
+        display_jobs 
     end
 
     def make_jobs
         job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH)
         DigitalNomadJobs::Job.create_from_collection(job_array)
-        display_jobs
-    end
-
-    def display_jobs
         puts ''
         puts 'CHECK OUT NEW REMOTE JOB POSTINGS BELOW' 
         puts '------------------------------------------------'
         puts ''
+        display_jobs
+    end
+
+    def display_jobs
         DigitalNomadJobs::Job.all.each.with_index(1) do |job, i|
             puts "#{i}. #{job.title} - #{job.company}"
             puts ''
