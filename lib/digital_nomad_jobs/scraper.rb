@@ -11,7 +11,7 @@ class DigitalNomadJobs::Scraper
             {:title => post.css('h2').text, 
             :company => post.css('.preventLink h3').text,
             :job_url => post.css('a')[0]['href'],
-            :company_url => post.css('a')[1]['href']}
+            :company_url => post.css('a')[1]['href'],}
         end
     end  
 

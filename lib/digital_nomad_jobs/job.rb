@@ -8,22 +8,22 @@ class DigitalNomadJobs::Job
         @@all << self 
     end 
 
-    def self.reset
-        @@all.clear
-    end 
-
     def self.create_from_collection(array)
         array.each do | hash |
             job = new(hash)
         end 
     end 
 
-    def add_job_descriptions(hash)
+    def add_job_description(hash)
         hash.each {|key, value| self.send(("#{key}="), value)}
     end 
 
     def self.all
         @@all 
+    end 
+
+    def self.reset
+        @@all.clear
     end 
 
 end

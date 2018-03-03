@@ -21,7 +21,7 @@ class DigitalNomadJobs::CLI
         puts "Enter '2' for UX/UI and Web Design Jobs"
         puts "Enter '3' to List The 100 Newest Remote Jobs"
         puts "Enter '0' to exit"
-        puts "========= + + + + + + + ==========="
+        puts "========= x x x x x x x ==========="
         select_option
     end 
 
@@ -45,6 +45,7 @@ class DigitalNomadJobs::CLI
     end 
 
     def make_dev_jobs
+        DigitalNomadJobs::Job.reset
         puts "SCRAPE THAT WEB DEVELOPER."
         job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-dev-jobs')
         DigitalNomadJobs::Job.create_from_collection(job_array)
@@ -73,17 +74,17 @@ class DigitalNomadJobs::CLI
         # puts 'CHECK OUT THE NEWEST JOB POSTINGS BELOW' 
         puts '------------------------------------------------'
         puts ''
+        puts 'Loading some pretty sweet gigs....'
         add_descriptions_to_jobs
         display_jobs
     end
 
     def display_jobs
         DigitalNomadJobs::Job.all.each.with_index(1) do |job, i|
+            puts "-----------------------------------------------------------------------------------------------"
             puts "#{i}. #{job.title} - #{job.company} - #{job.time_posted}"
-            puts "SKILLS: #{job.skills}"
-            puts "#{job.description}"
-            puts "SEE MORE INFO AT #{job.company_url}"
-            puts ''
+            puts "-----------------------------------------------------------------------------------------------"
+            puts "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         end 
     end
 
