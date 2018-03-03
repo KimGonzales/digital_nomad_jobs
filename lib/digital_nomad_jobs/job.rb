@@ -3,9 +3,9 @@ class DigitalNomadJobs::Job
     attr_accessor :title, :company, :description, :job_url, :skills, :time_posted
     @@all = [ ]
 
-    def initialize(hash)
-        hash.each {|key, value| self.send(("#{key}="), value)}
-        self << @@all 
+    def initialize(attributes)
+        attributes.each {|key, value| self.send(("#{key}="), value)}
+        @@all << self 
     end 
 
     def self.reset
