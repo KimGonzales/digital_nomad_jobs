@@ -2,25 +2,31 @@ class DigitalNomadJobs::CLI
 
     PATH =("https://remoteok.io")
 
-    def call
-        puts "Welcome to Digital Nomad Jobs!"
-        main_menu 
+    def call 
+        welcome 
+        main_menu
+    end 
+    
+    def welcome
+        puts "###################################"
+        puts ")))Welcome to Digital Nomad Jobs((("
+        puts "###################################"
     end 
 
 
     def main_menu
-        puts "###################################"
         puts "======== +  MAIN MENU + ==========="
         puts "What Are You Looking For?"
         puts "Enter '1' for Web Developer Jobs"
         puts "Enter '2' for UX/UI and Design Jobs"
         puts "Enter '3' to List All Jobs"
         puts "Enter '0' to exit"
-        puts "###################################"
-        select_list
+        puts "========= + + + + + + +============"
+    
+        select_option
     end 
 
-    def select_list
+    def select_option
         input = gets.strip.to_i
 
         case input

@@ -38,7 +38,7 @@ methods
     #make_all_jobs 
         calls Scraper.scrape_jobs(URL) where url is index page
         creates new jobs with create_from_collection
-        
+
 #display_jobs
 
 #display_job_description
@@ -100,7 +100,7 @@ methods:
 
 #.scrape_job_descriptions
     this class method takes an argument of a singular job posting's url
-    and scrapes the :description and :company_url and returns a hash.
+    and scrapes the page to return a hash of that job's :description. 
     It iterates over all existing Job.urls and scrapes each job description
 
 
