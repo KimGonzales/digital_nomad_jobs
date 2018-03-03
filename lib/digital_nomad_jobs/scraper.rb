@@ -16,13 +16,14 @@ class DigitalNomadJobs::Scraper
 
         job_hash = {}
 
-        doc.css(".company_and_position_mobile").each do |pos|
+        doc.css(".company_and_position_mobile").collect do |pos|
             job_hash [:title] = pos.css("h2").text
             job_hash [:company] = pos.css(".preventLink h3").text 
         end 
         
         doc.css(".time").each do |t|
             job_hash[:time_posted] = t.text
+            binding.pry 
         end     
         puts job_hash         
     end  

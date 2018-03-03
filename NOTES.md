@@ -12,12 +12,12 @@ How To Build CLI GEM
 
 Flow
 
-[ ]Call CLI 
-[ ]CLI will greet user and print out main menu which consists of WEB DEV or WEB DESIGN or ALL
-[ ]Get user input
+[X]Call CLI 
+[X]CLI will greet user and print out main menu which consists of WEB DEV or WEB DESIGN or ALL
+[X]Get user input
 [ ]Scrape job postings from website and instantiate a new job object for every posting AND 
 [ ]Instatiate a new company for each job posting as well UNLESS it has already been created.
-[ ]Establish relationship between each Job and Company. A Job BELONGS TO a company. A Company has many jobs.     
+[X]Establish relationship between each Job and Company. A Job BELONGS TO a company. A Company can have many jobs.     
 
 Class Outlines:
 
@@ -28,7 +28,7 @@ attributes
 methods
 #call
 #main_menu
-#make_jobs
+#make_jobs_based_on_input
     #make_web_developer_jobs
         calls Scraper.scrape_jobs(URL) where url is web-dev page
         creates new jobs with create_from_collection
@@ -38,6 +38,7 @@ methods
     #make_all_jobs 
         calls Scraper.scrape_jobs(URL) where url is index page
         creates new jobs with create_from_collection
+        
 #display_jobs
 
 #display_job_description
@@ -95,12 +96,15 @@ methods:
     class method that should take in an argument of list of jobs URL (index, web dev OR
     web design) and returns an array of hashes. Each hash represents
     one job posting. The keys to the hash are the jobs attributes :title,
-    :company and :url. 
+    :company, :skills, :time_posted and :job_url. 
 
 #.scrape_job_descriptions
     this class method takes an argument of a singular job posting's url
     and scrapes the :description and :company_url and returns a hash.
+    It iterates over all existing Job.urls and scrapes each job description
 
 
-@@@@@@@ RELATIONSHIPS
-@@@@@@@ Walkthrough code!
+@@@@@@@ OBJECT RELATIONSHIPS!
+    A job belongs to a company while a company can have many jobs. 
+    Scraper class grabs Job and Company attributes
+    CLI 

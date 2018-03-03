@@ -14,7 +14,10 @@ class DigitalNomadJobs::CLI
         puts "Enter 2 for Web Design Jobs"
         puts "Enter 3 to List All Jobs"
         puts "Type '0' to exit"
-    
+        select_list
+    end 
+
+    def select_list
         input = gets.strip.to_i
 
         case input
