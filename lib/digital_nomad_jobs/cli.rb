@@ -77,10 +77,10 @@ class DigitalNomadJobs::CLI
         job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH)
         DigitalNomadJobs::Job.create_from_collection(job_array)
         puts ""
-        puts "CHECK OUT 100 NEWEST JOB POSTINGS BELOW" 
+        puts "Latest 100 Remote Jobs - Coming Right Up!" 
         puts "------------------------------------------------"
         puts ""
-        puts "Loading some pretty sweet gigs...."
+        puts "We're Loading Some Pretty Sweet Gigs...."
         add_descriptions_to_jobs
         display_jobs
     end
@@ -96,18 +96,51 @@ class DigitalNomadJobs::CLI
     end
  
     def select_position
+        puts ""
+        puts ""
         puts "Interested in a Position?"
-        puts "Enter a number to learn more!"
-        position = gets.strip.to_i
-        if position.between?(0,(DigitalNomadJobs::Job.all.length-1))
-          selected_job = DigitalNomadJobs::Job.all[(position-1)]
+        puts "Enter It's Number to Learn More!"
+        puts "Rather go back? Type 'main' to Head Back to the Main Menu" 
+        puts "Enter 'exit' to Peace Out"
+        position = gets.strip
+
+        if position.to_s == 'main'
+            main_menu
+        elsif position.to_i.between?(0,(DigitalNomadJobs::Job.all.length-1))
+          selected_job = DigitalNomadJobs::Job.all[(position.to_i - 1)]
+        elsif position.to_s == 'exit'
+            exit 
         else 
             puts "Pick another number, Friend. That one isn't valid."
             select_position
         end 
 
         selected_job.print_description
+        navigation
     end 
+
+    def navigation
+        puts ''
+        puts "Type 'main' to go back to the Main Menu"
+        puts "Type 'list' if you'd like to the list again"
+        puts "Type 'exit' if you're giving the job hunt a rest for now"
+
+        input = gets.strip 
+
+        case input 
+            when 'main'
+                main_menu
+            when 'list'
+                display_jobs
+            when 'exit'
+                exit 
+            else 
+                puts 'Not all who wander are lost! But you might be. Pick again.'
+                navigation
+             
+        end
+    end
+        
 
     def add_descriptions_to_jobs
         DigitalNomadJobs::Job.all.each do |job|

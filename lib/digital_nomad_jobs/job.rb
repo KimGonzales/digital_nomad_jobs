@@ -27,10 +27,13 @@ class DigitalNomadJobs::Job
     end 
 
     def print_description
+        puts "=================================================================================================================="
         puts "Position: #{self.title}"
         puts "Company : #{self.company}"
         puts "Posted  : #{self.time_posted} ago"
-        puts "Bonus Points: #{self.skills}"
+        puts "Related : #{self.skills}"
+        puts ""
         puts "Description : #{self.description}"
+        puts "=================================================================================================================="
     end 
 end
