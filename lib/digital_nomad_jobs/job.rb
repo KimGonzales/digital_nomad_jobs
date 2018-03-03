@@ -18,6 +18,10 @@ class DigitalNomadJobs::Job
         end 
     end 
 
+    def add_job_descriptions(hash)
+        hash.each {|key, value| self.send(("#{key}="), value)}
+    end 
+
     def self.all
         @@all 
     end 

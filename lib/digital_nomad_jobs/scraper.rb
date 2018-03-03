@@ -14,6 +14,19 @@ class DigitalNomadJobs::Scraper
             :company_url => post.css('a')[1]['href']}
         end
     end  
+
+    def self.scrape_descriptions(job_url)
+        html = open(job_url)
+        page = Nokogiri::HTML(html)
+
+        details = {}
+        details[:description] = page.css('.description').text
+        details[:time_posted] = page.css('.time').text
+        details[:skills] = page.css('.tags').text.gsub('3>', ' | ').insert(0,' | ')
+       
+        details
+    end 
+
     
 end
  
