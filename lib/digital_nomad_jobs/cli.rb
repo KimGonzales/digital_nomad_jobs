@@ -1,6 +1,6 @@
 class DigitalNomadJobs::CLI
 
-    PATH =("https://remoteok.io")
+    PATH =('https://remoteok.io')
 
     def call 
         welcome 
@@ -8,38 +8,42 @@ class DigitalNomadJobs::CLI
     end 
     
     def welcome
-        puts "==================================="
-        puts ") )Welcome to Digital Nomad Jobs( ("
-        puts "==================================="
+        puts "================================================"
+        puts ")       Welcome to DIGITAL NOMAD JOBS!         ("
+        puts "================================================"
+        puts "                LET'S EXPLORE                  "
     end 
 
 
     def main_menu
-        puts "======== +  MAIN MENU + ==========="
-        puts "What Are You Looking For?"
+        puts ""
+        puts "========         MAIN MENU          ============"
+        puts "                                                "
+        puts "            What Are You Looking For?"
+        puts ""
         puts "Enter '1' for Web Developer Jobs"
-        puts "Enter '2' for UX/UI and Web Design Jobs"
-        puts "Enter '3' to List The 100 Newest Remote Jobs"
+        puts "Enter '2' for UX/UI & Web Design Jobs"
+        puts "Enter '3' to List The 100 Latest Remote Jobs"
         puts "Enter '0' to exit"
-        puts "========= x x x x x x x ==========="
+        puts "=========       x x x x x x x      ============="
         select_option
     end 
 
     def select_option
-        input = gets.strip.to_i
+        input = gets.strip.to_s
 
         case input
-            when input = 1
+            when '1'
                 make_dev_jobs
-            when input = 2
+            when '2'
                 make_design_jobs
-            when input = 3
-                make_jobs
-            when input = 0
+            when '3'
+                make_all_the_jobs
+            when '0'
                 puts "Bye!"
                 exit 
             else 
-                "Whoops didn't get that! Say it again."
+                puts "Whoops didn't get that! Say it again."
                 main_menu
         end
     end 
@@ -49,32 +53,34 @@ class DigitalNomadJobs::CLI
         puts "SCRAPE THAT WEB DEVELOPER."
         job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-dev-jobs')
         DigitalNomadJobs::Job.create_from_collection(job_array)
-        puts ''
-        puts 'CHECK OUT NEW WEB-DEV JOB POSTINGS BELOW' 
-        puts '------------------------------------------------'
-        puts ''
+        puts ""
+        puts "CHECK OUT NEW WEB-DEV JOB POSTINGS BELOW"
+        puts "------------------------------------------------"
+        puts ""
         display_jobs
     end
 
     def make_design_jobs
+        DigitalNomadJobs::Job.reset
         puts "SCRAPE THE DESIGN!"
         job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-design-jobs')
         DigitalNomadJobs::Job.create_from_collection(job_array)
-        puts ''
-        puts 'CHECK OUT NEW UX AND DESIGN JOB POSTINGS BELOW' 
-        puts '------------------------------------------------'
-        puts ''
+        puts ""
+        puts "CHECK OUT NEW UX AND DESIGN JOB POSTINGS BELOW" 
+        puts "------------------------------------------------"
+        puts ""
         display_jobs 
     end
 
-    def make_jobs
+    def make_all_the_jobs
+        DigitalNomadJobs::Job.reset
         job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH)
         DigitalNomadJobs::Job.create_from_collection(job_array)
-        puts ''
-        # puts 'CHECK OUT THE NEWEST JOB POSTINGS BELOW' 
-        puts '------------------------------------------------'
-        puts ''
-        puts 'Loading some pretty sweet gigs....'
+        puts ""
+        puts "CHECK OUT 100 NEWEST JOB POSTINGS BELOW" 
+        puts "------------------------------------------------"
+        puts ""
+        puts "Loading some pretty sweet gigs...."
         add_descriptions_to_jobs
         display_jobs
     end
@@ -86,7 +92,22 @@ class DigitalNomadJobs::CLI
             puts "-----------------------------------------------------------------------------------------------"
             puts "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         end 
+        select_position
     end
+ 
+    def select_position
+        puts "Interested in a Position?"
+        puts "Enter a number to learn more!"
+        position = gets.strip.to_i
+        if position.between?(0,(DigitalNomadJobs::Job.all.length-1))
+          selected_job = DigitalNomadJobs::Job.all[(position-1)]
+        else 
+            puts "Pick another number, Friend. That one isn't valid."
+            select_position
+        end 
+
+        selected_job.print_description
+    end 
 
     def add_descriptions_to_jobs
         DigitalNomadJobs::Job.all.each do |job|
