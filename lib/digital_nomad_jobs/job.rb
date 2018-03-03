@@ -12,7 +12,14 @@ class DigitalNomadJobs::Job
         @@all.clear
     end 
 
-    def self.create_from_collection(job_array)
+    def self.create_from_collection(array)
+        array.each do | hash |
+            job = new(hash)
+        end 
+    end 
+
+    def self.all
+        @@all 
     end 
 
 end

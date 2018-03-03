@@ -22,7 +22,6 @@ class DigitalNomadJobs::CLI
         puts "Enter '3' to List All Jobs"
         puts "Enter '0' to exit"
         puts "========= + + + + + + +============"
-    
         select_option
     end 
 
@@ -54,8 +53,20 @@ class DigitalNomadJobs::CLI
     end
 
     def make_jobs
-        puts "ALL THE THINGS!" 
-        job_hash = DigitalNomadJobs::Scraper.scrape_jobs(PATH)
+        job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH)
+        DigitalNomadJobs::Job.create_from_collection(job_array)
+        display_jobs
+    end
+
+    def display_jobs
+        puts ''
+        puts 'CHECK OUT NEW REMOTE JOB POSTINGS BELOW' 
+        puts '------------------------------------------------'
+        puts ''
+        DigitalNomadJobs::Job.all.each.with_index(1) do |job, i|
+            puts "#{i}. #{job.title} - #{job.company}"
+            puts ''
+        end 
     end
 
     

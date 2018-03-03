@@ -13,7 +13,6 @@ class DigitalNomadJobs::Scraper
             :job_url => post.css('a')[0]['href'],
             :company_url => post.css('a')[1]['href']}
         end
-        puts job_array 
     end  
     
 end
