@@ -1,13 +1,15 @@
 class DigitalNomadJobs::Job
 
-  attr_accessor :title, :company, :description, :job_url, :skills, :time_posted, :company_url
+  attr_accessor :title, :company, :description, :job_url, :skills, :time_posted
   @@all = [ ]
 
   def initialize(attributes)
-    attributes.each {|key, value| self.send(("#{key}="), value)}
-    @@all << self 
+    attributes.each {|key, value| self.send(("#{key}="), value) unless key == :company_url}
+    @@all << self  
     company = DigitalNomadJobs::Company.find_or_create_by_name(self.company)
     company.add_job(self)
+    company.company_url = attributes[:company_url]
+     
     binding.pry
   end 
 
