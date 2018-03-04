@@ -32,10 +32,12 @@ class DigitalNomadJobs::Company
 
   def add_job(job)
     @jobs << job 
-    job.company = self
-    #self.url = job.company_url
+    job.company = self.name 
   end 
 
+  def self.list_companies 
+    all.each.with_index(1) {|company, i| puts "{i}. #{company.name}"}
+  end 
 
   def print_company_jobs
     jobs.each_with_index(1) {|job, i| puts "#{i}. #{job.title}"}

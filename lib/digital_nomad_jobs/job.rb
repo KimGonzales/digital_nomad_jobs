@@ -9,8 +9,6 @@ class DigitalNomadJobs::Job
     company = DigitalNomadJobs::Company.find_or_create_by_name(self.company)
     company.add_job(self)
     company.company_url = attributes[:company_url]
-     
-    binding.pry
   end 
 
   def self.create_from_collection(array)
@@ -31,7 +29,7 @@ class DigitalNomadJobs::Job
     @@all.clear
   end 
 
-  def print_description
+  def print_job_description
     puts "=========================================================================================="
     puts ""
     puts "Position: #{self.title}"

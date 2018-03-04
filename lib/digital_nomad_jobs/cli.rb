@@ -81,7 +81,7 @@ class DigitalNomadJobs::CLI
     puts "10 Latest Remote Jobs - Coming Right Up!" 
     puts "------------------------------------------------"
     puts ""
-    puts "We're Loading Some Pretty Sweet Gigs...."
+    puts "Loading Some Pretty Sweet Gigs..."
     add_descriptions_to_jobs
     display_jobs
   end
@@ -119,20 +119,18 @@ class DigitalNomadJobs::CLI
       select_position
     end 
 
-    selected_job.print_description
+    selected_job.print_job_description
     navigation
   end 
 
   def navigation
     puts ""
-    puts "========         NAVIGATION          ============"
-    puts ""                                               
+    puts "========         NAVIGATION          ==========="                                              
     puts "              Where Ya Headed?"    
     puts ""
     puts "Enter 'Main' to go Back to the Main Menu"
     puts "Enter 'List' To See That List Again."
     puts "Enter 'Exit' to Exit."
-    puts ""
     puts "=========       x x x x x x x      ============="
     puts ""
     input = gets.strip.to_s
