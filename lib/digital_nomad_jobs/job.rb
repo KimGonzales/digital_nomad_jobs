@@ -42,4 +42,5 @@ class DigitalNomadJobs::Job
     puts "Learn More or Apply at: #{'https://remoteok.io' + self.job_url}"
     puts "=========================================================================================="
   end 
+
 end

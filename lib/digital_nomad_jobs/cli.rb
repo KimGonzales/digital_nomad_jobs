@@ -27,7 +27,7 @@ class DigitalNomadJobs::CLI
     puts "Enter '0' or type 'exit' to exit"
     puts ""
     puts "=========       x x x x x x x      ============="
-    select_option
+    select_option 
   end 
 
   def select_option
@@ -105,14 +105,13 @@ class DigitalNomadJobs::CLI
     puts "Rather go back? Type 'main' to Head Back to the Main Menu" 
     puts "Enter 'exit' to Peace Out"
 
-    position = gets.strip
+    position = gets.strip.to_s
 
-    if position.to_s == 'main'
+    if position == 'main'
       main_menu
-      #buggy
-    elsif position.to_s == 'exit'
+    elsif position == 'exit'
       exit 
-    elsif position.to_i.between?(0,(DigitalNomadJobs::Job.all.length-1))
+    elsif position.to_i.between?(0,(DigitalNomadJobs::Job.all.size))
       selected_job = DigitalNomadJobs::Job.all[(position.to_i - 1)]
     else 
       puts "Pick Another Number, Friend. That One Isn't Valid."
@@ -126,10 +125,10 @@ class DigitalNomadJobs::CLI
   def navigation
     puts ""
     puts "========         NAVIGATION          ==========="                                              
-    puts "              Where Ya Headed?"    
+    puts "              Where Ya Headed Now?"    
     puts ""
     puts "Enter 'Main' to go Back to the Main Menu"
-    puts "Enter 'List' To See That List Again."
+    puts "Enter 'List' To See That List of Jobs Again."
     puts "Enter 'Exit' to Exit."
     puts "=========       x x x x x x x      ============="
     puts ""
@@ -148,7 +147,7 @@ class DigitalNomadJobs::CLI
         navigation   
     end
   end
-      
+  
 
   def add_descriptions_to_jobs
     DigitalNomadJobs::Job.all.each do |job|
