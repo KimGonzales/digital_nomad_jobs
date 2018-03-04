@@ -87,12 +87,7 @@ class DigitalNomadJobs::CLI
   end
 
   def display_jobs
-    DigitalNomadJobs::Job.all.each.with_index(1) do |job, i|
-      puts "-----------------------------------------------------------------------------------------------"
-      puts "#{i}. #{job.title} - #{job.company} - Posted:#{job.time_posted} Ago"
-      puts "-----------------------------------------------------------------------------------------------"
-      puts "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-    end 
+    DigitalNomadJobs::Job.list_all_jobs
     select_position
   end
 
@@ -129,6 +124,7 @@ class DigitalNomadJobs::CLI
     puts ""
     puts "Enter 'Main' to go Back to the Main Menu"
     puts "Enter 'List' To See That List of Jobs Again."
+    puts "Enter 'Companies' to See a List of The Companies Hiring"
     puts "Enter 'Exit' to Exit."
     puts "=========       x x x x x x x      ============="
     puts ""

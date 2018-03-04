@@ -29,6 +29,15 @@ class DigitalNomadJobs::Job
     @@all.clear
   end 
 
+  def self.list_all_jobs
+    all.each.with_index(1) do | job, i |
+      puts "-----------------------------------------------------------------------------------------------"
+      puts "#{i}. #{job.title} - #{job.company} - Posted:#{job.time_posted} Ago"
+      puts "-----------------------------------------------------------------------------------------------"
+      puts "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    end 
+  end 
+
   def print_job_description
     puts "=========================================================================================="
     puts ""
