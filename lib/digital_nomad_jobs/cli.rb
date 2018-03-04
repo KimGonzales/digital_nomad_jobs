@@ -82,10 +82,12 @@ class DigitalNomadJobs::CLI
   #------------------------- COMPANY------------------------------------#
 
     def choose_company_description
-      puts "Choose A Number of A Company If You'd like to See a detailed list of it's Open Job Positions"
+      puts "Choose The Number of A Company To See It's Recent Job Posts"
+      ######action here - enter other menu options
       company_number = gets.strip.to_i 
       chosen_company = DigitalNomadJobs::Company.all[company_number-1]
-      chosen_company.print_company_jobs 
+      chosen_company.print_company_jobs
+      navigation 
     end 
 
 
