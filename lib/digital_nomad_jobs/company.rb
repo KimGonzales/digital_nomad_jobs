@@ -1,7 +1,7 @@
 class DigitalNomadJobs::Company
 
   @@all = []
-  attr_accessor :name
+  attr_accessor :name, :url 
   attr_reader :jobs
 
   def initialize(name)
@@ -33,6 +33,7 @@ class DigitalNomadJobs::Company
   def add_job(job)
     @jobs << job 
     job.company = self
+    self.url = job.company_url
   end 
 
 

@@ -6,7 +6,9 @@ class DigitalNomadJobs::Job
   def initialize(attributes)
     attributes.each {|key, value| self.send(("#{key}="), value)}
     @@all << self 
-    DigitalNomadJobs::Company.find_or_create_by_name(self.company)
+    company = DigitalNomadJobs::Company.find_or_create_by_name(self.company)
+    company.add_job(self)
+    binding.pry
   end 
 
   def self.create_from_collection(array)
