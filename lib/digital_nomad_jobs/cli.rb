@@ -6,10 +6,9 @@ class DigitalNomadJobs::CLI
     welcome 
     main_menu
   end 
-  
 
-
-#---------------------    CLI MENUS ----------------------------------------#
+#----------------------------------        CLI MENUS      ----------------------------------#
+ 
   def welcome
     puts "================================================"
     puts ")       Welcome to DIGITAL NOMAD JOBS!         ("
@@ -33,24 +32,6 @@ class DigitalNomadJobs::CLI
     select_job_maker 
   end 
 
-  def select_job_maker
-    input = gets.strip.to_s
-
-    case input
-      when '1'
-        make_dev_jobs
-      when '2'
-        make_design_jobs
-      when '3'
-        make_all_the_jobs
-      when '0','exit'
-        puts "Bye!"
-        exit 
-      else 
-        puts "Whoops that input isn't valid! Hit me Again."
-        main_menu
-    end
-  end 
 
   def list_menu
     puts "===========     LIST MENU    ==================="
@@ -70,93 +51,13 @@ class DigitalNomadJobs::CLI
       when 'Main', 'main'
         main_menu
       when '0', 'exit'
+        puts "Thanks for Visiting!"
         exit 
       else 
-        "That input isn't valid! Try again."
+        puts "That input isn't valid! Try again."
         list_menu
       end 
   end 
-
-
-
-
-  #-----------------------------  COMPANY LIST -------------------------------------#
-
-    def choose_company_description
-      puts "Choose The Number of A Company To See It's Recent Job Posts"
-      ######action here - enter other menu options
-      company_number = gets.strip.to_i 
-      chosen_company = DigitalNomadJobs::Company.all[company_number-1]
-      chosen_company.print_company_jobs
-      navigation 
-      #TO DO: VALIDATE INPUT 
-    end 
-
-
-  #-------------------------- CLI JOB FACTORY -------------------------------------#
-
-  
-  def make_dev_jobs
-    DigitalNomadJobs::Job.reset
-    job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-dev-jobs')
-    DigitalNomadJobs::Job.create_from_collection(job_array)
-    puts ""
-    puts "   NABBING AWESOME AVAILABLE WEB-DEV JOBS       "
-    puts "------------------------------------------------"
-    puts "            WEB DEVELOPER JOBS "
-    add_descriptions_to_jobs
-    list_menu
-  end
-
-
-  def make_design_jobs
-    DigitalNomadJobs::Job.reset
-    job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-design-jobs')
-    DigitalNomadJobs::Job.create_from_collection(job_array)
-    puts ""
-    puts "A LIST OF NEW UX AND DESIGN JOBS ARE ON ZE WAY" 
-    puts "------------------------------------------------"
-    puts "              WEB DESIGN JOBS"
-    add_descriptions_to_jobs
-    list_menu
-  end
-
-  def make_all_the_jobs
-    DigitalNomadJobs::Job.reset
-    job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH)
-    DigitalNomadJobs::Job.create_from_collection(job_array)
-    puts ""
-    puts "10 Latest Remote Jobs - Coming Right Up!" 
-    puts "------------------------------------------------"
-    puts "              REMOTE JOBS"
-    puts "Loading Some Pretty Sweet Gigs..."
-    add_descriptions_to_jobs
-    list_menu 
-  end
-
-#--------------------------------   CLI DISPLAY METHODS -----------------------------#
-  def display_companies
-    DigitalNomadJobs::Company.list_companies
-    choose_company_description 
-  end 
-
-
-  def display_jobs
-    DigitalNomadJobs::Job.list_all_jobs
-    select_job_description 
-  end
-
-
-
-  def select_job_description
-    puts "Enter The Number of a Job Posting For a Detailed  Description"
-    job_input = gets.strip.to_i
-    selected_job = DigitalNomadJobs::Job.all[(job_input.to_i - 1)]
-    selected_job.print_job_description
-    navigation
-    # TO DO: VALIDATE INPUT 
-  end
-
 
 
   def navigation
@@ -183,8 +84,103 @@ class DigitalNomadJobs::CLI
         puts 'Please Pick a Valid Option'
         navigation   
     end
-  end
+  end 
+
+  #----------------------------------        CLI INPUT SELECTORS      ----------------------------------#
   
+  def select_job_maker
+    input = gets.strip.to_s
+
+    case input
+      when '1'
+        make_dev_jobs
+      when '2'
+        make_design_jobs
+      when '3'
+        make_all_the_jobs
+      when '0','exit'
+        puts "Bye!"
+        exit 
+      else 
+        puts "Whoops! That input isn't valid! Try Again!"
+        main_menu
+    end
+  end 
+
+
+  def select_company_description
+    puts "Enter The Number of A Company To See It's Recent Job Posts"
+    ######action here - enter other menu options
+    company_number = gets.strip.to_i 
+    chosen_company = DigitalNomadJobs::Company.all[company_number-1]
+    chosen_company.print_company_jobs
+    navigation 
+    #TO DO: VALIDATE INPUT 
+  end 
+
+
+  def select_job_description
+    puts "Enter The Number of a Job Posting For a Detailed  Description"
+    job_input = gets.strip.to_i
+    selected_job = DigitalNomadJobs::Job.all[(job_input.to_i - 1)]
+    selected_job.print_job_description
+    navigation
+    # TO DO: VALIDATE INPUT 
+  end
+
+  #------------------------------------        CLI JOB FACTORY      --------------------------------------#
+  
+  def make_dev_jobs
+    DigitalNomadJobs::Job.reset
+    job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-dev-jobs')
+    DigitalNomadJobs::Job.create_from_collection(job_array)
+    puts ""
+    puts "                      🖥️        "
+    puts "------------------------------------------------"
+    puts "           LOADING WEB DEVELOPER JOBS "
+    add_descriptions_to_jobs
+    list_menu
+  end
+
+
+  def make_design_jobs
+    DigitalNomadJobs::Job.reset
+    job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-design-jobs')
+    DigitalNomadJobs::Job.create_from_collection(job_array)
+    puts ""
+    puts "                     🎨 " 
+    puts "------------------------------------------------"
+    puts "           LOADING WEB DESIGN JOBS"
+    add_descriptions_to_jobs
+    list_menu
+  end
+
+
+  def make_all_the_jobs
+    DigitalNomadJobs::Job.reset
+    job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH)
+    DigitalNomadJobs::Job.create_from_collection(job_array)
+    puts ""
+    puts "                      🌎 " 
+    puts "------------------------------------------------"
+    puts "              LOADING REMOTE JOBS"
+    add_descriptions_to_jobs
+    list_menu 
+  end
+
+#--------------------------------   CLI DISPLAY METHODS -----------------------------#
+  
+  def display_companies
+    DigitalNomadJobs::Company.list_companies
+    select_company_description 
+  end 
+
+
+  def display_jobs
+    DigitalNomadJobs::Job.list_all_jobs
+    select_job_description 
+  end
+
 
   def add_descriptions_to_jobs
     DigitalNomadJobs::Job.all.each do |job|
