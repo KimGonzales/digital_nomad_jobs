@@ -54,12 +54,42 @@ class DigitalNomadJobs::CLI
     job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-dev-jobs')
     DigitalNomadJobs::Job.create_from_collection(job_array)
     puts ""
-    puts "   NABBING THE MOST RECENT WEB-DEV JOBS         "
+    puts "   NABBING AWESOME AVAILABLE WEB-DEV JOBS       "
     puts "------------------------------------------------"
     puts ""
     add_descriptions_to_jobs
-    display_jobs
+    list_menu
+    #display_jobs
   end
+
+  def list_menu
+    puts "Enter '1' To See a List of The Most Recent Job Postings"
+    puts "Enter '2' To See a List of The Companies Hiring"
+    user_input = gets.strip.to_s
+
+    case user_input 
+      when '1'
+        display_jobs
+      when '2'
+        DigitalNomadJobs::Company.list_companies
+        choose_company_description 
+      else 
+        main_menu
+      end 
+  end 
+
+
+  #------------------------- COMPANY------------------------------------#
+
+    def choose_company_description
+      puts "Choose A Number of A Company If You'd like to See a detailed list of it's Open Job Positions"
+      company_number = gets.strip.to_i 
+      chosen_company = DigitalNomadJobs::Company.all[company_number-1]
+      chosen_company.print_company_jobs 
+    end 
+
+
+  #-------------------------- JOB  -------------------------------------#
 
   def make_design_jobs
     DigitalNomadJobs::Job.reset

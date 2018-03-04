@@ -37,11 +37,12 @@ class DigitalNomadJobs::Company
 
   def self.list_companies 
     all.each.with_index(1) do |company, i| 
-      puts "{i}. #{company.name} - Learn More: #{'https://remoteok.io' + company.company_url}"
+      puts "#{i}. #{company.name}"
     end 
   end 
 
   def print_company_jobs
-    jobs.each.with_index(1) {|job, i| puts "#{i}. #{job.title}"}
+    puts "This Company has #{self.jobs.size} Positions Available"
+    jobs.each.with_index(1) {|job, i| puts "#{i}. #{job.print_job_description}"}
   end 
 end 
