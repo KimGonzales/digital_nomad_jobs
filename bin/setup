@@ -4,5 +4,3 @@ IFS=$'\n\t'
 set -vx
 
 bundle install
-
-#Maybe delete this one too?
