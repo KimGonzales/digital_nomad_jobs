@@ -7,6 +7,9 @@ class DigitalNomadJobs::CLI
     main_menu
   end 
   
+
+
+#---------------------    CLI MENUS ----------------------------------------#
   def welcome
     puts "================================================"
     puts ")       Welcome to DIGITAL NOMAD JOBS!         ("
@@ -27,10 +30,10 @@ class DigitalNomadJobs::CLI
     puts "Enter '0' or type 'exit' to exit"
     puts ""
     puts "=========       x x x x x x x      ============="
-    select_option 
+    select_job_maker 
   end 
 
-  def select_option
+  def select_job_maker
     input = gets.strip.to_s
 
     case input
@@ -44,27 +47,18 @@ class DigitalNomadJobs::CLI
         puts "Bye!"
         exit 
       else 
-        puts "Whoops didn't get that! Say it again."
+        puts "Whoops that input isn't valid! Hit me Again."
         main_menu
     end
   end 
 
-  def make_dev_jobs
-    DigitalNomadJobs::Job.reset
-    job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-dev-jobs')
-    DigitalNomadJobs::Job.create_from_collection(job_array)
-    puts ""
-    puts "   NABBING AWESOME AVAILABLE WEB-DEV JOBS       "
-    puts "------------------------------------------------"
-    puts ""
-    add_descriptions_to_jobs
-    list_menu
-    #display_jobs
-  end
-
   def list_menu
-    puts "Enter '1' To See a List of The Most Recent Job Postings"
-    puts "Enter '2' To See a List of The Companies Hiring"
+    puts "===========     LIST MENU    ==================="
+    puts "Enter '1' For A List of The Most Recent Job Postings"
+    puts "Enter '2' For A List of The Companies Hiring"
+    puts "Enter '0' To Exit"
+    puts "Enter 'Main' To Go Back To The Main Menu"
+    puts "================================================"
     user_input = gets.strip.to_s
 
     case user_input 
@@ -73,13 +67,20 @@ class DigitalNomadJobs::CLI
       when '2'
         DigitalNomadJobs::Company.list_companies
         choose_company_description 
-      else 
+      when 'Main', 'main'
         main_menu
+      when '0', 'exit'
+        exit 
+      else 
+        "That input isn't valid! Try again."
+        list_menu
       end 
   end 
 
 
-  #------------------------- COMPANY------------------------------------#
+
+
+  #-----------------------------  COMPANY LIST -------------------------------------#
 
     def choose_company_description
       puts "Choose The Number of A Company To See It's Recent Job Posts"
@@ -91,7 +92,21 @@ class DigitalNomadJobs::CLI
     end 
 
 
-  #-------------------------- JOB  -------------------------------------#
+  #-------------------------- CLI JOB FACTORY -------------------------------------#
+
+  
+  def make_dev_jobs
+    DigitalNomadJobs::Job.reset
+    job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-dev-jobs')
+    DigitalNomadJobs::Job.create_from_collection(job_array)
+    puts ""
+    puts "   NABBING AWESOME AVAILABLE WEB-DEV JOBS       "
+    puts "------------------------------------------------"
+    puts ""
+    add_descriptions_to_jobs
+    list_menu
+  end
+
 
   def make_design_jobs
     DigitalNomadJobs::Job.reset
@@ -118,10 +133,19 @@ class DigitalNomadJobs::CLI
     display_jobs
   end
 
+#--------------------------------   CLI DISPLAY METHODS -----------------------------#
+  def display_companies
+    DigitalNomadJobs::Company.list_companies
+    choose_company_description 
+  end 
+
+
   def display_jobs
     DigitalNomadJobs::Job.list_all_jobs
     select_position
   end
+
+
 
   def select_position
     #turn into description menu for List or To see Company information?
@@ -155,8 +179,7 @@ class DigitalNomadJobs::CLI
     puts "              Where Ya Headed Now?"    
     puts ""
     puts "Enter 'Main' to go Back to the Main Menu"
-    puts "Enter 'List' To See That List of Jobs Again."
-    puts "Enter 'Companies' to See a List of The Companies Hiring"
+    puts "Enter 'List' To Go Back to the List Menu"
     puts "Enter 'Exit' to Exit."
     puts "=========       x x x x x x x      ============="
     puts ""
@@ -166,7 +189,7 @@ class DigitalNomadJobs::CLI
       when 'main', 'Main'
         main_menu
       when 'list', 'List'
-        display_jobs
+        list_menu
       when 'exit', 'Exit'
         exit 
       else 
