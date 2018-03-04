@@ -54,6 +54,7 @@ class DigitalNomadJobs::CLI
 
   def list_menu
     puts "===========     LIST MENU    ==================="
+    puts ""
     puts "Enter '1' For A List of The Most Recent Job Postings"
     puts "Enter '2' For A List of The Companies Hiring"
     puts "Enter '0' To Exit"
@@ -65,8 +66,7 @@ class DigitalNomadJobs::CLI
       when '1'
         display_jobs
       when '2'
-        DigitalNomadJobs::Company.list_companies
-        choose_company_description 
+        display_companies 
       when 'Main', 'main'
         main_menu
       when '0', 'exit'
@@ -89,6 +89,7 @@ class DigitalNomadJobs::CLI
       chosen_company = DigitalNomadJobs::Company.all[company_number-1]
       chosen_company.print_company_jobs
       navigation 
+      #TO DO: VALIDATE INPUT 
     end 
 
 
@@ -102,7 +103,7 @@ class DigitalNomadJobs::CLI
     puts ""
     puts "   NABBING AWESOME AVAILABLE WEB-DEV JOBS       "
     puts "------------------------------------------------"
-    puts ""
+    puts "            WEB DEVELOPER JOBS "
     add_descriptions_to_jobs
     list_menu
   end
@@ -115,9 +116,9 @@ class DigitalNomadJobs::CLI
     puts ""
     puts "A LIST OF NEW UX AND DESIGN JOBS ARE ON ZE WAY" 
     puts "------------------------------------------------"
-    puts ""
+    puts "              WEB DESIGN JOBS"
     add_descriptions_to_jobs
-    display_jobs 
+    list_menu
   end
 
   def make_all_the_jobs
@@ -127,10 +128,10 @@ class DigitalNomadJobs::CLI
     puts ""
     puts "10 Latest Remote Jobs - Coming Right Up!" 
     puts "------------------------------------------------"
-    puts ""
+    puts "              REMOTE JOBS"
     puts "Loading Some Pretty Sweet Gigs..."
     add_descriptions_to_jobs
-    display_jobs
+    list_menu 
   end
 
 #--------------------------------   CLI DISPLAY METHODS -----------------------------#
@@ -142,36 +143,21 @@ class DigitalNomadJobs::CLI
 
   def display_jobs
     DigitalNomadJobs::Job.list_all_jobs
-    select_position
+    select_job_description 
   end
 
 
 
-  def select_position
-    #turn into description menu for List or To see Company information?
-    puts ""
-    puts ""
-    puts "Interested in a Position?"
-    puts "Enter It's Number to Learn More!"
-    puts "Rather go back? Type 'main' to Head Back to the Main Menu" 
-    puts "Enter 'exit' to Peace Out"
-
-    position = gets.strip.to_s
-
-    if position == 'main'
-      main_menu
-    elsif position == 'exit'
-      exit 
-    elsif position.to_i.between?(0,(DigitalNomadJobs::Job.all.size))
-      selected_job = DigitalNomadJobs::Job.all[(position.to_i - 1)]
-    else 
-      puts "Pick Another Number, Friend. That One Isn't Valid."
-      select_position
-    end 
-
+  def select_job_description
+    puts "Enter The Number of a Job Posting For a Detailed  Description"
+    job_input = gets.strip.to_i
+    selected_job = DigitalNomadJobs::Job.all[(job_input.to_i - 1)]
     selected_job.print_job_description
     navigation
-  end 
+    # TO DO: VALIDATE INPUT 
+  end
+
+
 
   def navigation
     puts ""
