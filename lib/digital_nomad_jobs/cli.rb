@@ -11,7 +11,7 @@ class DigitalNomadJobs::CLI
     puts "================================================"
     puts ")       Welcome to DIGITAL NOMAD JOBS!         ("
     puts "================================================"
-    puts "                LET'S EXPLORE                  "
+    puts "                LET'S EXPLORE                   "
   end 
 
 
@@ -23,8 +23,9 @@ class DigitalNomadJobs::CLI
     puts ""
     puts "Enter '1' for Web Developer Jobs"
     puts "Enter '2' for UX/UI & Web Design Jobs"
-    puts "Enter '3' to List The 100 Latest Remote Jobs"
+    puts "Enter '3' to List The 10 Latest Remote Jobs"
     puts "Enter '0' or type 'exit' to exit"
+    puts ""
     puts "=========       x x x x x x x      ============="
     select_option
   end 
@@ -77,7 +78,7 @@ class DigitalNomadJobs::CLI
     job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH)
     DigitalNomadJobs::Job.create_from_collection(job_array)
     puts ""
-    puts "Latest 100 Remote Jobs - Coming Right Up!" 
+    puts "10 Latest Remote Jobs - Coming Right Up!" 
     puts "------------------------------------------------"
     puts ""
     puts "We're Loading Some Pretty Sweet Gigs...."
@@ -88,7 +89,7 @@ class DigitalNomadJobs::CLI
   def display_jobs
     DigitalNomadJobs::Job.all.each.with_index(1) do |job, i|
       puts "-----------------------------------------------------------------------------------------------"
-      puts "#{i}. #{job.title} - #{job.company} - #{job.time_posted}"
+      puts "#{i}. #{job.title} - #{job.company} - Posted:#{job.time_posted} Ago"
       puts "-----------------------------------------------------------------------------------------------"
       puts "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
     end 
@@ -96,6 +97,7 @@ class DigitalNomadJobs::CLI
   end
 
   def select_position
+    #turn into description menu for List or To see Company information?
     puts ""
     puts ""
     puts "Interested in a Position?"
@@ -107,12 +109,13 @@ class DigitalNomadJobs::CLI
 
     if position.to_s == 'main'
       main_menu
-    elsif position.to_i.between?(0,(DigitalNomadJobs::Job.all.length-1))
-      selected_job = DigitalNomadJobs::Job.all[(position.to_i - 1)]
+      #buggy
     elsif position.to_s == 'exit'
       exit 
+    elsif position.to_i.between?(0,(DigitalNomadJobs::Job.all.length-1))
+      selected_job = DigitalNomadJobs::Job.all[(position.to_i - 1)]
     else 
-      puts "Pick another number, Friend. That one isn't valid."
+      puts "Pick Another Number, Friend. That One Isn't Valid."
       select_position
     end 
 
@@ -121,23 +124,30 @@ class DigitalNomadJobs::CLI
   end 
 
   def navigation
-    puts ''
-    puts "Type 'main' to go back to the Main Menu"
-    puts "Type 'list' if you'd like to the list again"
-    puts "Type 'exit' if you're giving the job hunt a rest for now"
-
-    input = gets.strip 
+    puts ""
+    puts "========         NAVIGATION          ============"
+    puts ""                                               
+    puts "              Where Ya Headed?"    
+    puts ""
+    puts "Enter 'Main' to go Back to the Main Menu"
+    puts "Enter 'List' To See That List Again."
+    puts "Enter 'Exit' to Exit."
+    puts ""
+    puts "=========       x x x x x x x      ============="
+    puts ""
+    input = gets.strip.to_s
 
     case input 
-      when 'main'
-          main_menu
-      when 'list'
-          display_jobs
-      when 'exit'
-          exit 
+      when 'main', 'Main'
+        main_menu
+      when 'list', 'List'
+        display_jobs
+      when 'exit', 'Exit'
+        exit 
       else 
-          puts 'Not all who wander are lost! But you might be. Pick again.'
-          navigation   
+        puts 'Not All Those Who Wander Are Lost... But You Might Be!'
+        puts 'Please Pick a Valid Option'
+        navigation   
     end
   end
       

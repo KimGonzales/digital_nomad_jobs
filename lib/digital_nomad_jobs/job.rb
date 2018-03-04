@@ -6,6 +6,7 @@ class DigitalNomadJobs::Job
   def initialize(attributes)
     attributes.each {|key, value| self.send(("#{key}="), value)}
     @@all << self 
+    DigitalNomadJobs::Company.find_or_create_by_name(self.company)
   end 
 
   def self.create_from_collection(array)
@@ -27,15 +28,16 @@ class DigitalNomadJobs::Job
   end 
 
   def print_description
-    puts "=================================================================================================================="
+    puts "=========================================================================================="
+    puts ""
     puts "Position: #{self.title}"
     puts "Company : #{self.company}"
     puts "Posted  : #{self.time_posted} ago"
-    puts "Tags : #{self.skills}"
+    puts "Tags    : #{self.skills}"
     puts ""
     puts "Description : #{self.description}"
     puts ""
     puts "Learn More or Apply at: #{'https://remoteok.io' + self.job_url}"
-    puts "=================================================================================================================="
+    puts "=========================================================================================="
   end 
 end
