@@ -102,50 +102,61 @@ class DigitalNomadJobs::CLI
       puts "Bye!"
       exit 
     else 
-      puts "Whoops! That input isn't valid! Try Again!"
+      puts "Whoops! That input isn't valid! Try again!"
       main_menu
     end
   end 
 
 
-  def select_company_description
+  def select_company
     puts ""
     puts "Enter The Number of A Company To See It's Recent Job Posts"
     puts "Enter '0' To Head Back to The Main Menu"
-    company_number = gets.strip.to_i 
+    cn = gets.strip 
     
-    if company_number == 0
-      main_menu 
-    elsif valid_company?(company_number)
-      selected_company = DigitalNomadJobs::Company.all[company_number-1]
-      selected_company.print_company_jobs
+    if valid_company?(cn) 
+      comp = DigitalNomadJobs::Company.all[cn.to_i-1]
+      comp.print_company_jobs
       navigation 
+    elsif cn == 0
+      main_menu
     else 
-      puts "Whoops! That isn't a Valid Number. Please Choose Another."
-      select_company_description
+      puts "Whoops! That isn't a valid number. Please enter another."
+      select_company
     end 
-  end 
+  end
 
 
   def valid_company?(input)
-    input.between?(1, DigitalNomadJobs::Company.all.size)
+    input.to_i.between?(1, DigitalNomadJobs::Company.all.size)
   end 
 
 
   def valid_job?(input)
-    input.between?(1, DigitalNomadJobs::Job.all.size)
+    input.to_i.between?(1, DigitalNomadJobs::Job.all.size)
   end 
 
-  
-  def select_job_description
-    puts "Enter The Number of a Job Posting For a Detailed  Description"
-    job_input = gets.strip.to_i
-    selected_job = DigitalNomadJobs::Job.all[(job_input.to_i - 1)]
-    selected_job.print_job_description
-    navigation
-    # TO DO: VALIDATE INPUT 
-  end
 
+  ####TODO FIX EDGE CASES WITH 0 INPUT 
+  def select_job_description
+    puts ""
+    puts "Enter The Number of a Job Posting For a Detailed Description"
+    puts "Enter '0' To Head Back to The Main Menu"
+    jp = gets.strip
+  
+    if valid_job?(jp)
+      job = DigitalNomadJobs::Job.all[jp.to_i - 1]
+      job.print_job_description
+      navigation 
+    elsif jp == 0
+      main_menu
+    else
+      puts "DO IT AGAIN MAN"
+      select_job_description 
+    end 
+  end 
+
+  #TODO #error message
   #------------------------------------        CLI JOB FACTORY      --------------------------------------#
   
   def make_dev_jobs
@@ -186,19 +197,6 @@ class DigitalNomadJobs::CLI
     list_menu 
   end
 
-#--------------------------------   CLI DISPLAY METHODS -----------------------------#
-  
-  def display_companies
-    DigitalNomadJobs::Company.list_companies
-    select_company_description 
-  end 
-
-
-  def display_jobs
-    DigitalNomadJobs::Job.list_all_jobs
-    select_job_description 
-  end
-
 
   def add_descriptions_to_jobs
     DigitalNomadJobs::Job.all.each do |job|
@@ -207,4 +205,18 @@ class DigitalNomadJobs::CLI
     end 
   end 
 
+#--------------------------------   CLI DISPLAY METHODS -----------------------------#
+  
+  def display_companies
+    DigitalNomadJobs::Company.list_companies
+    select_company 
+  end 
+
+
+  def display_jobs
+    DigitalNomadJobs::Job.list_all_jobs
+    select_job_description 
+  end
+
+  
 end
