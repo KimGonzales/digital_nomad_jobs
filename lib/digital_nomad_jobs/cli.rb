@@ -7,7 +7,7 @@ class DigitalNomadJobs::CLI
     main_menu
   end 
 
-#----------------------------------        CLI MENUS      ----------------------------------#
+  #----------------------------------        CLI MENUS      ----------------------------------#
  
   def welcome
     puts "================================================"
@@ -44,19 +44,19 @@ class DigitalNomadJobs::CLI
     user_input = gets.strip.to_s
 
     case user_input 
-      when '1'
-        display_jobs
-      when '2'
-        display_companies 
-      when 'Main', 'main'
-        main_menu
-      when '0', 'exit'
-        puts "Thanks for Visiting!"
-        exit 
-      else 
-        puts "That input isn't valid! Try again."
-        list_menu
-      end 
+    when '1'
+      display_jobs
+    when '2'
+      display_companies 
+    when 'Main', 'main'
+      main_menu
+    when '0', 'exit'
+      puts "Thanks for Visiting!"
+      exit 
+    else 
+      puts "That input isn't valid! Try again."
+      list_menu
+    end 
   end 
 
 
@@ -73,16 +73,16 @@ class DigitalNomadJobs::CLI
     input = gets.strip.to_s
 
     case input 
-      when 'main', 'Main'
-        main_menu
-      when 'list', 'List'
-        list_menu
-      when 'exit', 'Exit'
-        exit 
-      else 
-        puts 'Not All Those Who Wander Are Lost... But You Might Be!'
-        puts 'Please Pick a Valid Option'
-        navigation   
+    when 'main', 'Main'
+      main_menu
+    when 'list', 'List'
+      list_menu
+    when 'exit', 'Exit'
+      exit 
+    else 
+      puts 'Not All Those Who Wander Are Lost... But You Might Be!'
+      puts 'Please Pick a Valid Option'
+      navigation   
     end
   end 
 
@@ -92,33 +92,51 @@ class DigitalNomadJobs::CLI
     input = gets.strip.to_s
 
     case input
-      when '1'
-        make_dev_jobs
-      when '2'
-        make_design_jobs
-      when '3'
-        make_all_the_jobs
-      when '0','exit'
-        puts "Bye!"
-        exit 
-      else 
-        puts "Whoops! That input isn't valid! Try Again!"
-        main_menu
+    when '1'
+      make_dev_jobs
+    when '2'
+      make_design_jobs
+    when '3'
+      make_all_the_jobs
+    when '0','exit'
+      puts "Bye!"
+      exit 
+    else 
+      puts "Whoops! That input isn't valid! Try Again!"
+      main_menu
     end
   end 
 
 
   def select_company_description
+    puts ""
     puts "Enter The Number of A Company To See It's Recent Job Posts"
-    ######action here - enter other menu options
+    puts "Enter '0' To Head Back to The Main Menu"
     company_number = gets.strip.to_i 
-    chosen_company = DigitalNomadJobs::Company.all[company_number-1]
-    chosen_company.print_company_jobs
-    navigation 
-    #TO DO: VALIDATE INPUT 
+    
+    if company_number == 0
+      main_menu 
+    elsif valid_company?(company_number)
+      selected_company = DigitalNomadJobs::Company.all[company_number-1]
+      selected_company.print_company_jobs
+      navigation 
+    else 
+      puts "Whoops! That isn't a Valid Number. Please Choose Another."
+      select_company_description
+    end 
   end 
 
 
+  def valid_company?(input)
+    input.between?(1, DigitalNomadJobs::Company.all.size)
+  end 
+
+
+  def valid_job?(input)
+    input.between?(1, DigitalNomadJobs::Job.all.size)
+  end 
+
+  
   def select_job_description
     puts "Enter The Number of a Job Posting For a Detailed  Description"
     job_input = gets.strip.to_i
@@ -189,5 +207,4 @@ class DigitalNomadJobs::CLI
     end 
   end 
 
-  
 end

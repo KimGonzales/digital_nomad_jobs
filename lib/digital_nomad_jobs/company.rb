@@ -56,6 +56,7 @@ class DigitalNomadJobs::Company
       puts "About: #{job.description}"
       puts ""
       puts "TO APPLY OR SEE MORE FROM #{self.name.upcase} VISIT: #{'https://remoteok.io' + self.company_url}"
+      puts "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
     end
     puts "-----------------------------------------------------------------------------------------------"
   end 
