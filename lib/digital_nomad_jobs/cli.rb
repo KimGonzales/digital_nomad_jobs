@@ -154,6 +154,7 @@ class DigitalNomadJobs::CLI
   
   def make_dev_jobs
     DigitalNomadJobs::Job.reset
+    DigitalNomadJobs::Company.reset
     job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-dev-jobs')
     DigitalNomadJobs::Job.create_from_collection(job_array)
     puts ""
@@ -167,6 +168,7 @@ class DigitalNomadJobs::CLI
 
   def make_design_jobs
     DigitalNomadJobs::Job.reset
+    DigitalNomadJobs::Company.reset
     job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-design-jobs')
     DigitalNomadJobs::Job.create_from_collection(job_array)
     puts ""
@@ -180,6 +182,7 @@ class DigitalNomadJobs::CLI
 
   def make_all_the_jobs
     DigitalNomadJobs::Job.reset
+    DigitalNomadJobs::Company.reset
     job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH)
     DigitalNomadJobs::Job.create_from_collection(job_array)
     puts ""
