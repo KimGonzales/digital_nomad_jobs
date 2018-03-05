@@ -1,8 +1,8 @@
 # DigitalNomadJobs
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/digital_nomad_jobs`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to your new ruby Gem!
 
-TODO: Delete this and the text above, and describe your gem
+Digital Nomad Jobs is a CLI gem which allows users to access the latest web developer, web designer and remote jobs available from Remoteok.io. 
 
 ## Installation
 
@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Run digital_remote_jobs and follow the interactive prompts to choose between lists of hiring companies or lists of the latest job postings per industry.
 
 ## Development
 
@@ -32,7 +32,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/<github username>/digital_nomad_jobs. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/KimGonzales/digital_nomad_jobs. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -40,4 +40,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the DigitalNomadJobs project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/<github username>/digital_nomad_jobs/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the DigitalNomadJobs project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/KimGonzales/digital_nomad_jobs/blob/master/CODE_OF_CONDUCT.md).
