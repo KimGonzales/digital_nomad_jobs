@@ -31,25 +31,25 @@ class DigitalNomadJobs::Job
 
   def self.list_all_jobs
     all.each.with_index(1) do | job, i |
-      puts "-----------------------------------------------------------------------------------------------"
+      puts "-----------------------------------------------------------------------------------------------".blue 
       puts "#{i}. #{job.title} - #{job.company} - Posted:#{job.time_posted} Ago"
-      puts "-----------------------------------------------------------------------------------------------"
-      puts "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+      puts "-----------------------------------------------------------------------------------------------".blue 
+      puts "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX".blue
     end 
   end 
 
   def print_job_description
-    puts "=========================================================================================="
+    puts "==========================================================================================".blue 
     puts ""
-    puts "Position: #{self.title}"
-    puts "Company : #{self.company}"
-    puts "Posted  : #{self.time_posted} ago"
-    puts "Tags    : #{self.skills}"
+    puts "Position: ".blue + "#{self.title}"
+    puts "Company: ".blue + "#{self.company}"
+    puts "Posted: ".blue + "#{self.time_posted} ago"
+    puts "Tags: ".blue + "#{self.skills}"
     puts ""
-    puts "Description : #{self.description}"
+    puts "Description: ".blue + "#{self.description}"
     puts ""
-    puts "Learn More or Apply at: #{'https://remoteok.io' + self.job_url}"
-    puts "=========================================================================================="
+    puts "Learn More or Apply at: ".blue + "#{'https://remoteok.io' + self.job_url}"
+    puts "==========================================================================================".blue 
   end 
 
 end

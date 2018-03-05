@@ -10,37 +10,37 @@ class DigitalNomadJobs::CLI
   #----------------------------------        CLI MENUS      ----------------------------------#
  
   def welcome
-    puts "================================================"
-    puts ")       Welcome to DIGITAL NOMAD JOBS!         ("
-    puts "================================================"
-    puts "                LET'S EXPLORE                   "
+    puts "================================================".blue 
+    puts ")       Welcome to DIGITAL NOMAD JOBS!         (".blue  
+    puts "================================================".blue
+    puts "                LET'S EXPLORE                   ".white.on_blue
   end 
 
 
   def main_menu
     puts ""
-    puts "========         MAIN MENU          ============"
-    puts "                                                "
-    puts "            What Are You Looking For?"
+    puts "========         MAIN MENU          ============".blue 
+    puts "                                                ".blue 
+    puts "            What Are You Looking For?".blue 
     puts ""
-    puts "Enter '1' for Web Developer Jobs"
-    puts "Enter '2' for UX/UI & Web Design Jobs"
-    puts "Enter '3' to List The 10 Latest Remote Jobs"
+    puts "Enter '1' for Web Developer Jobs" 
+    puts "Enter '2' for UX/UI & Web Design Jobs" 
+    puts "Enter '3' to List The 20 Latest Remote Jobs"
     puts "Enter '0' or type 'exit' to exit"
     puts ""
-    puts "=========       x x x x x x x      ============="
+    puts "=========       x x x x x x x      =============".blue 
     select_job_maker 
   end 
 
 
   def list_menu
-    puts "===========     LIST MENU    ==================="
+    puts "===========     LIST MENU    ===================".blue 
     puts ""
     puts "Enter '1' For A List of The Most Recent Job Postings"
     puts "Enter '2' For A List of The Companies Hiring"
     puts "Enter '0' To Exit"
     puts "Enter 'Main' To Go Back To The Main Menu"
-    puts "================================================"
+    puts "================================================".blue 
     user_input = gets.strip.to_s
 
     case user_input 
@@ -62,13 +62,13 @@ class DigitalNomadJobs::CLI
 
   def navigation
     puts ""
-    puts "========         NAVIGATION          ==========="                                              
-    puts "              Where Ya Headed Now?"    
+    puts "========         NAVIGATION          ===========".blue                                              
+    puts "              Where Ya Headed Now?".blue     
     puts ""
     puts "Enter 'Main' to go Back to the Main Menu"
     puts "Enter 'List' To Go Back to the List Menu"
     puts "Enter 'Exit' to Exit."
-    puts "=========       x x x x x x x      ============="
+    puts "=========       x x x x x x x      =============".blue
     puts ""
     input = gets.strip.to_s
 
@@ -80,7 +80,7 @@ class DigitalNomadJobs::CLI
     when 'exit', 'Exit'
       exit 
     else 
-      puts 'Not All Those Who Wander Are Lost... But You Might Be!'
+      puts 'Not All Those Who Wander Are Lost... But You Might Be!'.cyan 
       error 
       navigation   
     end
@@ -98,10 +98,10 @@ class DigitalNomadJobs::CLI
     when '3'
       make_all_the_jobs
     when '0','exit'
-      puts "Bye!"
+      puts "Bye!".blue 
       exit 
     else 
-      puts "Whoops! That input isn't valid! Try again!"
+      puts "Whoops! Please enter a valid option.".magenta 
       main_menu
     end
   end 
@@ -109,7 +109,7 @@ class DigitalNomadJobs::CLI
 
   def select_company
     puts ""
-    puts "Enter The Number of A Company To See It's Recent Job Posts"
+    puts "Enter The Number of A Company To See It's Recent Job Posts" 
     cn = gets.strip.to_i    
     if valid_company?(cn) 
       comp = DigitalNomadJobs::Company.all[cn-1]
@@ -147,8 +147,7 @@ class DigitalNomadJobs::CLI
   end 
 
   def error
-    puts 'Hey!'
-    puts 'Please Enter A Valid Option!'
+    puts 'Whoops! Please Enter A Valid Option.'.magenta 
   end 
   #------------------------------------        CLI JOB FACTORY      --------------------------------------#
   
@@ -157,9 +156,9 @@ class DigitalNomadJobs::CLI
     job_array = DigitalNomadJobs::Scraper.scrape_jobs(PATH + '/remote-dev-jobs')
     DigitalNomadJobs::Job.create_from_collection(job_array)
     puts ""
-    puts "                      🖥️        "
-    puts "------------------------------------------------"
-    puts "           LOADING WEB DEVELOPER JOBS "
+    puts '                      🖥️                        '
+    puts "------------------------------------------------".blue 
+    puts "           LOADING WEB DEVELOPER JOBS           ".white.on_blue 
     add_descriptions_to_jobs
     list_menu
   end
@@ -171,8 +170,8 @@ class DigitalNomadJobs::CLI
     DigitalNomadJobs::Job.create_from_collection(job_array)
     puts ""
     puts "                     🎨 " 
-    puts "------------------------------------------------"
-    puts "           LOADING WEB DESIGN JOBS"
+    puts "------------------------------------------------".blue 
+    puts "           LOADING WEB DESIGN JOBS              ".white.on_blue 
     add_descriptions_to_jobs
     list_menu
   end
@@ -184,8 +183,8 @@ class DigitalNomadJobs::CLI
     DigitalNomadJobs::Job.create_from_collection(job_array)
     puts ""
     puts "                      🌎 " 
-    puts "------------------------------------------------"
-    puts "              LOADING REMOTE JOBS"
+    puts "------------------------------------------------".blue 
+    puts "              LOADING REMOTE JOBS               ".white.on_blue 
     add_descriptions_to_jobs
     list_menu 
   end

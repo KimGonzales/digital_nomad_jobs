@@ -5,7 +5,7 @@ class DigitalNomadJobs::Scraper
     doc = Nokogiri::HTML(html)
     posts = doc.css(".company_and_position_mobile")
 
-    job_array = posts.first(5).collect do |post|
+    job_array = posts.first(20).collect do |post|
       {:title => post.css('h2').text, 
       :company => post.css('.preventLink h3').text,
       :job_url => post.css('a')[0]['href'],

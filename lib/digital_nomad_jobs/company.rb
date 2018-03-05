@@ -1,5 +1,5 @@
 class DigitalNomadJobs::Company
-
+ 
   @@all = []
   attr_accessor :name, :company_url 
   attr_reader :jobs
@@ -37,27 +37,27 @@ class DigitalNomadJobs::Company
 
   def self.list_companies 
     puts ""
-    puts "============ COMPANIES NOW HIRING! ============="
-    puts "================================================"
+    puts "============ COMPANIES NOW HIRING! =============".blue 
+    puts "================================================".blue 
     puts ""
     all.each.with_index(1) do |company, i| 
       puts "#{i}. #{company.name}"
     end 
-    puts "================================================"
+    puts "================================================".blue 
   end 
 
   def print_company_jobs
     puts ""
-    puts "#{self.name.upcase} IS LOOKING TO FILL THESE POSITIONS!"
-    puts "-----------------------------------------------------------------------------------------------"
+    puts "#{self.name.upcase} IS LOOKING TO FILL THESE POSITIONS!".white.on_blue 
+    puts "-----------------------------------------------------------------------------------------------".blue 
     jobs.each.with_index(1) do |job, i| 
       puts "#{i}. #{job.title} - Posted:#{job.time_posted} Ago"
       puts ""
-      puts "About: #{job.description}"
+      puts "About: ".blue + "#{job.description}"
       puts ""
-      puts "TO APPLY OR SEE MORE FROM #{self.name.upcase} VISIT: #{'https://remoteok.io' + self.company_url}"
-      puts "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+      puts "TO APPLY OR SEE MORE FROM #{self.name.upcase} VISIT: ".blue + "#{'https://remoteok.io' + self.company_url}"
+      puts "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -".blue 
     end
-    puts "-----------------------------------------------------------------------------------------------"
+    puts "-----------------------------------------------------------------------------------------------".blue 
   end 
 end 
