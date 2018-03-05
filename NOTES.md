@@ -15,7 +15,7 @@ Flow
 [X]Call CLI 
 [X]CLI will greet user and print out main menu which consists of WEB DEV or WEB DESIGN or ALL
 [X]Get user input
-[ ]Scrape job postings from website and instantiate a new job object for every posting AND 
+[X]Scrape job postings from website and instantiate a new job object for every posting AND 
 [ ]Instatiate a new company for each job posting as well UNLESS it has already been created.
 [X]Establish relationship between each Job and Company. A Job BELONGS TO a company. A Company can have many jobs.     
 
@@ -108,3 +108,15 @@ methods:
     A job belongs to a company while a company can have many jobs. 
     Scraper class grabs Job and Company attributes
     CLI 
+
+____________________________________________
+New Things I've Learned From Making This Gem
+
++ How to use .first(num) to enumrate over an array a certain number of times - aha moment when scraping the webpage after a         billion times.
++ there is alot of information in the internet. i might actually be able to find everything i need on there.
++  talk to the dog
++ .gsub('what you want to take out', 'what you want to replace it with')
++ humbled. i thought i new classes and instances very well until i opened a text editor without specs.
++ trust my code
++ a bit better at scraping! i spent close to 8 hours trying to scrape the right information the first day. 
+    every time i did it myself, i wasn happy i didn't ask for help.
