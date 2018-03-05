@@ -1,4 +1,3 @@
-require 'pry'
 class DigitalNomadJobs::CLI
 
   PATH =('https://remoteok.io')

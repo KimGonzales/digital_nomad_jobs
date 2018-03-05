@@ -6,11 +6,11 @@ require "digital_nomad_jobs/version"
 Gem::Specification.new do |spec|
   spec.name          = "digital_nomad_jobs"
   spec.version       = DigitalNomadJobs::VERSION
-  spec.authors       = ["<github username>"]
-  spec.email         = ["<github email address>"]
+  spec.authors       = ["Kim Gonzales"]
+  spec.email         = ["Kimgo589@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = "Remote Jobs for The Digital Nomad"
+  spec.description   = "This CLI Ruby Gem provides users the most up-to-date web dev and design jobs from 'Remoteok.io'"
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
@@ -33,4 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "nokogiri", ">= 0"
+  spec.add_development_dependency "pry", ">= 0"
+  spec.add_development_dependency "colorize", ">= 0"
 end
