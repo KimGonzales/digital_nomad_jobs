@@ -23,9 +23,9 @@ class DigitalNomadJobs::CLI
     puts "                                                ".blue 
     puts "            What Are You Looking For?".blue 
     puts ""
-    puts "Enter '1' for Web Developer Jobs" 
-    puts "Enter '2' for UX/UI & Web Design Jobs" 
-    puts "Enter '3' to List The 20 Latest Remote Jobs"
+    puts "Enter '1' for The Latest Web Developer Jobs" 
+    puts "Enter '2' for The Latest UX/UI & Web Design Jobs" 
+    puts "Enter '3' for The 20 Latest Remote Jobs"
     puts "Enter '0' or type 'exit' to exit"
     puts ""
     puts "=========       x x x x x x x      =============".blue 
@@ -116,7 +116,8 @@ class DigitalNomadJobs::CLI
       comp.print_company_jobs
       navigation 
     else 
-      error 
+      error
+      select_company 
     end 
   end
 
