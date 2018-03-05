@@ -1,3 +1,4 @@
+require 'pry'
 class DigitalNomadJobs::CLI
 
   PATH =('https://remoteok.io')
@@ -118,11 +119,8 @@ class DigitalNomadJobs::CLI
       comp = DigitalNomadJobs::Company.all[cn.to_i-1]
       comp.print_company_jobs
       navigation 
-    elsif cn == 0
-      main_menu
     else 
-      puts "Whoops! That isn't a valid number. Please enter another."
-      select_company
+      puts "Please Enter A Valid Number!"
     end 
   end
 
@@ -137,22 +135,18 @@ class DigitalNomadJobs::CLI
   end 
 
 
-  ####TODO FIX EDGE CASES WITH 0 INPUT 
-  def select_job_description
+  def select_job
     puts ""
-    puts "Enter The Number of a Job Posting For a Detailed Description"
-    puts "Enter '0' To Head Back to The Main Menu"
-    jp = gets.strip
+    puts "Enter The Number of a Job Post For a Detailed Description"
+    jp = gets.strip.to_i
   
     if valid_job?(jp)
-      job = DigitalNomadJobs::Job.all[jp.to_i - 1]
+      job = DigitalNomadJobs::Job.all[jp - 1]
       job.print_job_description
       navigation 
-    elsif jp == 0
-      main_menu
-    else
-      puts "DO IT AGAIN MAN"
-      select_job_description 
+    else 
+      puts "Please Enter A Valid Number"
+      select_job
     end 
   end 
 
@@ -215,7 +209,7 @@ class DigitalNomadJobs::CLI
 
   def display_jobs
     DigitalNomadJobs::Job.list_all_jobs
-    select_job_description 
+    select_job 
   end
 
   
