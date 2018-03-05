@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "Remote Jobs for The Digital Nomad"
   spec.description   = "This CLI Ruby Gem provides users the most up-to-date web dev and design jobs from 'Remoteok.io'"
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/KimGonzales/digital_nomad_jobs"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

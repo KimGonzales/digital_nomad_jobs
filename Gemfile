@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/KimGonzales" }
+git_source(:github) {|repo_name| "https://github.com/KimGonzales/#{digital_nomad_jobs}" }
 
 # Specify your gem's dependencies in digital_nomad_jobs.gemspec
 # Gemfile: Used to manage gem dependencies for our library’s development. 
