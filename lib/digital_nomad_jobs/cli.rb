@@ -55,7 +55,7 @@ class DigitalNomadJobs::CLI
       puts "Thanks for Visiting!"
       exit 
     else 
-      puts "That input isn't valid! Try again."
+      error
       list_menu
     end 
   end 
@@ -82,7 +82,7 @@ class DigitalNomadJobs::CLI
       exit 
     else 
       puts 'Not All Those Who Wander Are Lost... But You Might Be!'
-      puts 'Please Pick a Valid Option'
+      error 
       navigation   
     end
   end 
@@ -91,7 +91,6 @@ class DigitalNomadJobs::CLI
   
   def select_job_maker
     input = gets.strip.to_s
-
     case input
     when '1'
       make_dev_jobs
@@ -112,26 +111,24 @@ class DigitalNomadJobs::CLI
   def select_company
     puts ""
     puts "Enter The Number of A Company To See It's Recent Job Posts"
-    puts "Enter '0' To Head Back to The Main Menu"
-    cn = gets.strip 
-    
+    cn = gets.strip.to_i    
     if valid_company?(cn) 
-      comp = DigitalNomadJobs::Company.all[cn.to_i-1]
+      comp = DigitalNomadJobs::Company.all[cn-1]
       comp.print_company_jobs
       navigation 
     else 
-      puts "Please Enter A Valid Number!"
+      error 
     end 
   end
 
 
   def valid_company?(input)
-    input.to_i.between?(1, DigitalNomadJobs::Company.all.size)
+    input.between?(1, DigitalNomadJobs::Company.all.size)
   end 
 
 
   def valid_job?(input)
-    input.to_i.between?(1, DigitalNomadJobs::Job.all.size)
+    input.between?(1, DigitalNomadJobs::Job.all.size)
   end 
 
 
@@ -145,12 +142,15 @@ class DigitalNomadJobs::CLI
       job.print_job_description
       navigation 
     else 
-      puts "Please Enter A Valid Number"
+      error 
       select_job
     end 
   end 
 
-  #TODO #error message
+  def error
+    puts 'Hey!'
+    puts 'Please Enter A Valid Option!'
+  end 
   #------------------------------------        CLI JOB FACTORY      --------------------------------------#
   
   def make_dev_jobs
