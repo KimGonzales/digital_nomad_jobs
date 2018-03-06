@@ -25,7 +25,7 @@ class DigitalNomadJobs::CLI
     puts ""
     puts "Enter '1' for The Latest Web Developer Jobs" 
     puts "Enter '2' for The Latest UX/UI & Web Design Jobs" 
-    puts "Enter '3' for The 20 Latest Remote Jobs"
+    puts "Enter '3' for The Latest Remote Job Postings"
     puts "Enter '0' or type 'exit' to exit"
     puts ""
     puts "=========       x x x x x x x      =============".blue 
