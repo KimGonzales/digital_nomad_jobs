@@ -13,5 +13,3 @@ require "digital_nomad_jobs"
 
 require "irb"
 IRB.start(__FILE__)
-
-you can probably delete this file 
