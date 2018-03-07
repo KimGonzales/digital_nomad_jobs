@@ -2,6 +2,8 @@ PATH
   remote: .
   specs:
     digital_nomad_jobs (0.1.0)
+      colorize (~> 0.8.1)
+      nokogiri (~> 1.8, >= 1.8.1)
 
 GEM
   remote: https://rubygems.org/
@@ -36,10 +38,8 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.16)
-  colorize
   digital_nomad_jobs!
-  nokogiri
-  pry
+  pry (~> 0.11.3)
   rake (~> 10.0)
   rspec (~> 3.0)
 
