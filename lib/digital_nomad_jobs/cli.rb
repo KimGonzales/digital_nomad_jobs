@@ -160,7 +160,7 @@ class DigitalNomadJobs::CLI
     puts ""
     puts '                      🖥️                        '
     puts "------------------------------------------------".blue 
-    puts "           LOADING WEB DEVELOPER JOBS           ".white.on_blue 
+    puts "           NABBING WEB DEVELOPER JOBS           ".white.on_blue 
     add_descriptions_to_jobs
     list_menu
   end
@@ -188,7 +188,7 @@ class DigitalNomadJobs::CLI
     puts ""
     puts "                      🌎 " 
     puts "------------------------------------------------".blue 
-    puts "              LOADING REMOTE JOBS               ".white.on_blue 
+    puts "         NABBING THE NEWEST REMOTE JOBS         ".white.on_blue 
     add_descriptions_to_jobs
     list_menu 
   end
