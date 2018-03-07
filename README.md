@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-Run digital_remote_jobs and follow the interactive prompts to choose between lists of hiring companies or lists of the latest job postings per industry.
+Run digital-remote-jobs and follow the interactive prompts to choose between lists of hiring companies or lists of the latest job postings per industry.
 
 ## Development
 
