@@ -13,13 +13,13 @@ class DigitalNomadJobs::CLI
     puts "================================================".blue 
     puts ")       Welcome to DIGITAL NOMAD JOBS!         (".blue  
     puts "================================================".blue
-    puts "                LET'S EXPLORE                   ".white.on_blue
+    puts "                 LET'S EXPLORE                  ".white.on_blue
   end 
 
 
   def main_menu
     puts ""
-    puts "========         MAIN MENU          ============".blue 
+    puts "========     🌎    MAIN MENU    🌎     ==========".blue 
     puts "                                                ".blue 
     puts "            What Are You Looking For?".blue 
     puts ""
