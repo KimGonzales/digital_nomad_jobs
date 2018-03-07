@@ -19,7 +19,7 @@ class DigitalNomadJobs::CLI
 
   def main_menu
     puts ""
-    puts "========     🌎    MAIN MENU    🌎     ==========".blue 
+    puts "========     🌎    MAIN MENU    🌎     ===========".blue 
     puts "                                                ".blue 
     puts "            What Are You Looking For?".blue 
     puts ""
